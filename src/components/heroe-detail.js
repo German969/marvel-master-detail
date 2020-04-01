@@ -15,6 +15,34 @@ const hero = {
       {
         "resourceURI": "http://gateway.marvel.com/v1/public/comics/21366",
         "name": "Avengers: The Initiative (2007) #14"
+      },
+      {
+        "resourceURI": "http://gateway.marvel.com/v1/public/comics/21366",
+        "name": "Avengers: The Initiative (2007) #14"
+      },
+      {
+        "resourceURI": "http://gateway.marvel.com/v1/public/comics/21366",
+        "name": "Avengers: The Initiative (2007) #14"
+      },
+      {
+        "resourceURI": "http://gateway.marvel.com/v1/public/comics/21366",
+        "name": "Avengers: The Initiative (2007) #14"
+      },
+      {
+        "resourceURI": "http://gateway.marvel.com/v1/public/comics/21366",
+        "name": "Avengers: The Initiative (2007) #14"
+      },
+      {
+        "resourceURI": "http://gateway.marvel.com/v1/public/comics/21366",
+        "name": "Avengers: The Initiative (2007) #14"
+      },
+      {
+        "resourceURI": "http://gateway.marvel.com/v1/public/comics/21366",
+        "name": "Avengers: The Initiative (2007) #14"
+      },
+      {
+        "resourceURI": "http://gateway.marvel.com/v1/public/comics/21366",
+        "name": "Avengers: The Initiative (2007) #14"
       }
     ]
   },
@@ -60,7 +88,8 @@ function HeroDetail({classes}) {
 
 export default withStyles({
   heroDetail: {
-    flexGrow: 10
+    flexGrow: 10,
+    borderBottom: '1px solid rgba(224, 224, 224, 1)'
   },
   heroAvatar: {
     width: '150px',

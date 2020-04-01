@@ -73,7 +73,7 @@ export default withStyles({
     margin: 'auto'
   },
   linksPanel: {
-    maxHeight: '395px',
+    maxHeight: '345px',
     overflow: 'scroll'
   }
 })(HeroLinks);
