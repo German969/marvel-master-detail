@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import HeroRow from './hero-row';
+import HeroRowSkeleton from './hero-row-skeleton';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableFooter from '@material-ui/core/TableFooter';
@@ -14,7 +15,6 @@ function HeroesList(props) {
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [selected, setSelected] = React.useState(0);
   const rows = useSelector(state => state.characters);
   const count = useSelector(state => state.total);
 
@@ -38,10 +38,6 @@ function HeroesList(props) {
     setPage(0);
   };
 
-  const handleClick = (event, name, index) => {
-    setSelected(index);
-  };
-
   const getTablePaginationProps = () => {
     return {
       rowsPerPageOptions: [5, 10, 20],
@@ -58,16 +54,29 @@ function HeroesList(props) {
     }
   };
 
+  const rowsToShow = rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+
+  const getRowsToRender = () => {
+    return (rowsPerPage > 0
+      ? rowsToShow
+      : rows).map((row) => (
+      <HeroRow hero={row} key={row.id} />
+    ));
+  };
+
+  const getRowSkeletonsToRender = () => {
+    return new Array(5).fill().map((item, index) => <HeroRowSkeleton key={index} />);
+  };
+
+  const listContent = ((rowsToShow.length > 0 && rowsPerPage > 0) || rows.length > 0) ?
+    getRowsToRender :
+    getRowSkeletonsToRender;
+
   return (
     <div className={classes.heroesList}>
       <Table>
         <TableBody>
-          {(rowsPerPage > 0
-              ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              : rows
-          ).map((row, index) => (
-            <HeroRow hero={row} key={row} index={index} handleClick={handleClick} />
-          ))}
+          {listContent()}
         </TableBody>
         <TableFooter>
           <TableRow>

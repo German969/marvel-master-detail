@@ -7,16 +7,22 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Tooltip from '@material-ui/core/Tooltip';
 import { ReactComponent as SeriesIcon } from './assets/series.svg';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSelected } from '../stores/store-actions';
 
-const selected = 1011334;
-
-function HeroRow({ classes, hero, index, handleClick }) {
+function HeroRow({ classes, hero }) {
+  const dispatch = useDispatch();
+  const selected = useSelector(state => state.selected);
   const isItemSelected = hero.id === selected;
+
+  const handleClick = (event, id) => {
+    dispatch(setSelected(id));
+  };
 
   const getTableRowProps = () => {
     return {
       hover: true,
-      onClick: (event) => handleClick(event, hero.name, index),
+      onClick: (event) => handleClick(event, hero.id),
       tabIndex: -1,
       key: hero.name,
       selected: isItemSelected,
@@ -71,7 +77,7 @@ export default withStyles({
   heroName: {
     display: 'inline',
     margin: 'auto 0',
-    'max-width': '101px',
+    'max-width': '102px',
     'word-break': 'break-word'
   },
   heroInfoCell: {

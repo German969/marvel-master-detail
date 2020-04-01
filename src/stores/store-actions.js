@@ -11,7 +11,7 @@ export function setSelected(characterId) {
   };
 }
 
-export function setTotal(totalCharacters) {
+function setTotal(totalCharacters) {
   return {
     type: SET_TOTAL,
     totalCharacters
