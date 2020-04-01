@@ -21,8 +21,8 @@ export default withStyles({
     borderBottom: '1px solid rgba(224, 224, 224, 1)'
   },
   avatarSkeleton: {
-    width: '150px',
-    height: '150px',
+    width: '185px',
+    height: '185px',
     margin: '30px auto'
   },
   nameSkeleton: {

@@ -16,9 +16,11 @@ function HeroDetail({classes}) {
     setHero(heroToShow);
   }, [selected, characters]);
 
+  const avatarURL = hero ? hero.thumbnail.path + '.' + hero.thumbnail.extension : '';
+
   return hero ? (
     <div className={classes.heroDetail}>
-      <Avatar alt={hero.name} src="/images/no-image.png" variant="rounded" className={classes.heroAvatar} />
+      <Avatar alt={hero.name} src={avatarURL} variant="rounded" className={classes.heroAvatar} />
       <h2 className={classes.heroName}>
         {hero.name}
       </h2>
@@ -35,8 +37,8 @@ export default withStyles({
     maxWidth: '850px'
   },
   heroAvatar: {
-    width: '150px',
-    height: '150px',
+    width: '220px',
+    height: '185px',
     margin: '30px auto'
   },
   heroName: {
