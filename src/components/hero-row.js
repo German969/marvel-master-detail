@@ -1,13 +1,12 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
+import getHeroContentProps from './hero-content-props';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-import { ReactComponent as ComicIcon } from './assets/comic.svg';
+import Tooltip from '@material-ui/core/Tooltip';
 import { ReactComponent as SeriesIcon } from './assets/series.svg';
-import { ReactComponent as EventIcon } from './assets/event.svg';
-import { ReactComponent as StoryIcon } from './assets/story.svg';
 
 const selected = 1011334;
 
@@ -25,6 +24,14 @@ function HeroRow({ classes, hero, index, handleClick }) {
     };
   };
 
+  const contentProps = getHeroContentProps({
+    comics: hero.comics,
+    series: hero.series,
+    events: hero.events,
+    stories: hero.stories,
+    classes
+  });
+
   return (
     <TableRow {...getTableRowProps()}>
       <TableCell align="left" className={classes.heroInfoCell}>
@@ -32,16 +39,24 @@ function HeroRow({ classes, hero, index, handleClick }) {
         <h3 className={classes.heroName}>{hero.name}</h3>
       </TableCell>
       <TableCell align="right" className={classes.flagCell}>
-        <SvgIcon component={ComicIcon} viewBox="0 0 480 480" />
+        <Tooltip title={contentProps.comics.label} placement="top" aria-label={contentProps.comics.label}>
+          <SvgIcon component={contentProps.comics.icon} viewBox="0 0 480 480" />
+        </Tooltip>
       </TableCell>
-      <TableCell align="right" className={[classes.flagCell, classes.seriesIcon]}>
-        <SvgIcon component={SeriesIcon} viewBox="0 0 480 480" />
+      <TableCell align="right" className={[classes.flagCell, contentProps.series.class]}>
+        <Tooltip title={contentProps.series.label} placement="top" aria-label={contentProps.series.label}>
+          <SvgIcon component={SeriesIcon} viewBox="0 0 480 480" />
+        </Tooltip>
       </TableCell>
       <TableCell align="right" className={classes.flagCell}>
-        <SvgIcon component={EventIcon} viewBox="0 0 480 480" />
+        <Tooltip title={contentProps.events.label} placement="top" aria-label={contentProps.events.label}>
+          <SvgIcon component={contentProps.events.icon} viewBox="0 0 480 480" />
+        </Tooltip>
       </TableCell>
       <TableCell align="right" className={classes.flagCell}>
-        <SvgIcon component={StoryIcon} viewBox="0 0 480 480" />
+        <Tooltip title={contentProps.stories.label} placement="top" aria-label={contentProps.stories.label}>
+          <SvgIcon component={contentProps.stories.icon} viewBox="0 0 480 480" />
+        </Tooltip>
       </TableCell>
     </TableRow>
   )
@@ -68,6 +83,9 @@ export default withStyles({
   },
   seriesIcon: {
     color: 'purple'
+  },
+  seriesIconDisabled: {
+    color: 'darkgrey'
   },
   heroRow: {
     cursor: 'pointer'
