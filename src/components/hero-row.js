@@ -32,10 +32,12 @@ function HeroRow({ classes, hero, index, handleClick }) {
     classes
   });
 
+  const avatarURL = hero.thumbnail.path + '.' + hero.thumbnail.extension;
+
   return (
     <TableRow {...getTableRowProps()}>
       <TableCell align="left" className={classes.heroInfoCell}>
-        <Avatar alt={hero.name} src="/images/no-image.png" className={classes.heroRowAvatar} />
+        <Avatar alt={hero.name} src={avatarURL} className={classes.heroRowAvatar} />
         <h3 className={classes.heroName}>{hero.name}</h3>
       </TableCell>
       <TableCell align="right" className={classes.flagCell}>
@@ -64,7 +66,6 @@ function HeroRow({ classes, hero, index, handleClick }) {
 
 export default withStyles({
   heroRowAvatar: {
-    display: 'inline-block',
     marginRight: '10px'
   },
   heroName: {

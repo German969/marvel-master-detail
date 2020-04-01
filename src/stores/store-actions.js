@@ -1,6 +1,7 @@
 import serviceCaller from '../service/service-caller';
 
 export const ADD_CHARACTERS = 'ADD_CHARACTERS';
+export const SET_TOTAL = 'SET_TOTAL';
 export const SET_SELECTED = 'SET_SELECTED';
 
 export function setSelected(characterId) {
@@ -8,6 +9,13 @@ export function setSelected(characterId) {
     type: SET_SELECTED,
     characterId
   };
+}
+
+export function setTotal(totalCharacters) {
+  return {
+    type: SET_TOTAL,
+    totalCharacters
+  }
 }
 
 function addCharacters(characters) {
@@ -21,16 +29,17 @@ export function fetchCharacters(offset) {
   return function(dispatch) {
     return serviceCaller.getCharacters(offset).then(
       (response) => {
-        let characters = response.data.data.results;
+        let data = response.data.data;
 
-        dispatch(addCharacters(characters));
+        dispatch(addCharacters(data.results));
 
-        return characters;
+        return data;
       },
       (error) => {console.log('SERVICE FAILED -', error)}
-    ).then((characters) => {
+    ).then((data) => {
       if (offset === 0 ) {
-        dispatch(setSelected(characters[0].id))
+        dispatch(setSelected(data.results[0].id));
+        dispatch(setTotal(data.total));
       }
     });
   };

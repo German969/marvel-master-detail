@@ -6,16 +6,30 @@ import TableBody from '@material-ui/core/TableBody';
 import TableFooter from '@material-ui/core/TableFooter';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
+import  { fetchCharacters } from '../stores/store-actions';
 
 function HeroesList(props) {
   const { classes } = props;
+  const dispatch = useDispatch();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selected, setSelected] = React.useState(0);
   const rows = useSelector(state => state.characters);
+  const count = useSelector(state => state.total);
 
   const handleChangePage = (event, newPage) => {
+    const loadedCharactersCount = rows.length;
+
+    if (loadedCharactersCount < count) {
+      const lastPageWithData = loadedCharactersCount / rowsPerPage;
+      const loadNewCharacters = (newPage + 1) >= lastPageWithData;
+
+      if (loadNewCharacters) {
+        dispatch(fetchCharacters(loadedCharactersCount));
+      }
+    }
+
     setPage(newPage);
   };
 
@@ -31,7 +45,7 @@ function HeroesList(props) {
   const getTablePaginationProps = () => {
     return {
       rowsPerPageOptions: [5, 10, 20],
-      count: rows.length,
+      count,
       colSpan: 5,
       rowsPerPage,
       page,
