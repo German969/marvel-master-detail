@@ -4,7 +4,9 @@ import { withStyles } from '@material-ui/core/styles';
 function Header(props) {
   const { classes } = props;
 
-  return <h1 className={classes.headerTitle}>Marvel Super Heroes</h1>
+  return (
+    <h1 className={classes.headerTitle}>Marvel Super Heroes</h1>
+  );
 }
 
 export default withStyles({
@@ -14,6 +16,7 @@ export default withStyles({
     margin: '0px',
     textAlign: 'center',
     height: '100px',
-    lineHeight: '100px'
+    lineHeight: '100px',
+    fontSize: '40px'
   }
 })(Header);

@@ -9,9 +9,26 @@ import { ReactComponent as SeriesIcon } from './assets/series.svg';
 import { ReactComponent as EventIcon } from './assets/event.svg';
 import { ReactComponent as StoryIcon } from './assets/story.svg';
 
-function HeroRow({ hero, classes }) {
+const selected = 1011334;
+
+function HeroRow({ classes, hero, index, handleClick }) {
+  const labelId = `enhanced-table-checkbox-${index}`;
+  const isItemSelected = hero.id === selected;
+  console.log(hero.id, selected);
+
+  const getTableRowProps = () => {
+    return {
+      hover: true,
+      onClick: (event) => handleClick(event, hero.name, index),
+      tabIndex: -1,
+      key: hero.name,
+      selected: isItemSelected,
+      className: classes.heroRow
+    };
+  };
+
   return (
-    <TableRow>
+    <TableRow {...getTableRowProps()}>
       <TableCell align="left" className={classes.heroInfoCell}>
         <Avatar alt={hero.name} src="/images/no-image.png" className={classes.heroRowAvatar} />
         <h3 className={classes.heroName}>{hero.name}</h3>
@@ -52,5 +69,8 @@ export default withStyles({
   },
   seriesIcon: {
     color: 'purple'
+  },
+  heroRow: {
+    cursor: 'pointer'
   }
 })(HeroRow);
