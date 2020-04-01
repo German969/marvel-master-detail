@@ -6,15 +6,14 @@ import Header from './components/header';
 import HeroDetail from './components/heroe-detail';
 import HeroesList from "./components/heroes-list";
 import RecentlyVisited from "./components/recently-visited";
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
+import { fetchCharacters } from './stores/store-actions';
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({type: 'ADD_CHARACTERS', characters: [
-        {name: '3-D Man', id: 1011334}, {name: '2superman', id: 1011335}
-      ]});
+    dispatch(fetchCharacters(0));
   }, [dispatch]);
 
   const HeroesContainer = styled(Box)({display: 'flex'});

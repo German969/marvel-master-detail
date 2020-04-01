@@ -13,7 +13,6 @@ const selected = 1011334;
 
 function HeroRow({ classes, hero, index, handleClick }) {
   const isItemSelected = hero.id === selected;
-  console.log(hero.id, selected);
 
   const getTableRowProps = () => {
     return {

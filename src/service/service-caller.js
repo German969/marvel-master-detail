@@ -5,24 +5,15 @@ const API_URL = 'https://gateway.marvel.com/v1/';
 const CHARACTERS_PATH = 'public/characters';
 
 export default {
-  callService() {
-    console.log('calling service..');
+  getCharacters(offset = 0) {
+    let limit = offset ? 10 : 20;
 
-    axios.get(API_URL + CHARACTERS_PATH, {
+    return axios.get(API_URL + CHARACTERS_PATH, {
       params: {
-        apikey: apiKeys.dev
+        apikey: apiKeys.dev,
+        offset,
+        limit
       }
     })
-      .then(function (response) {
-        // handle success
-        console.log(response);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .finally(function () {
-        // always executed
-      });
   }
 };
