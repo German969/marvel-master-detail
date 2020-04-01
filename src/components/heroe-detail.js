@@ -9,6 +9,39 @@ const hero = {
   thumbnail: {
     path: 'http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb97840',
     extension: 'jpg'
+  },
+  comics: {
+    items: [
+      {
+        "resourceURI": "http://gateway.marvel.com/v1/public/comics/21366",
+        "name": "Avengers: The Initiative (2007) #14"
+      }
+    ]
+  },
+  series: {
+    items: [
+      {
+        "resourceURI": "http://gateway.marvel.com/v1/public/series/1945",
+        "name": "Avengers: The Initiative (2007 - 2010)"
+      }
+    ]
+  },
+  stories: {
+    items: [
+      {
+        "resourceURI": "http://gateway.marvel.com/v1/public/stories/19947",
+        "name": "Cover #19947",
+        "type": "cover"
+      }
+    ]
+  },
+  events: {
+    items: [
+      {
+        "resourceURI": "http://gateway.marvel.com/v1/public/events/269",
+        "name": "Secret Invasion"
+      }
+    ]
   }
 };
 
@@ -20,7 +53,7 @@ function HeroDetail({classes}) {
         {hero.name}
       </h2>
       <p className={classes.heroDescription}>{hero.description}</p>
-      <HeroLinks />
+      <HeroLinks hero={hero} />
     </div>
   );
 }

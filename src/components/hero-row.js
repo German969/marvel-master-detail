@@ -12,7 +12,6 @@ import { ReactComponent as StoryIcon } from './assets/story.svg';
 const selected = 1011334;
 
 function HeroRow({ classes, hero, index, handleClick }) {
-  const labelId = `enhanced-table-checkbox-${index}`;
   const isItemSelected = hero.id === selected;
   console.log(hero.id, selected);
 
@@ -56,8 +55,9 @@ export default withStyles({
   },
   heroName: {
     display: 'inline',
-    margin: '0',
-    lineHeight: '40px'
+    margin: 'auto 0',
+    'max-width': '101px',
+    'word-break': 'break-word'
   },
   heroInfoCell: {
     display: 'flex',

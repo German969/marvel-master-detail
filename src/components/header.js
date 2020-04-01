@@ -17,6 +17,7 @@ export default withStyles({
     textAlign: 'center',
     height: '100px',
     lineHeight: '100px',
-    fontSize: '40px'
+    fontSize: '40px',
+    background: 'radial-gradient(circle, rgba(0,0,0,1) 40%, rgba(85,85,85,1) 100%)'
   }
 })(Header);
