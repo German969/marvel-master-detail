@@ -3,8 +3,9 @@ import serviceCaller from '../service/service-caller';
 export const ADD_CHARACTERS = 'ADD_CHARACTERS';
 export const SET_TOTAL = 'SET_TOTAL';
 export const SET_SELECTED = 'SET_SELECTED';
+export const ADD_RECENT = 'ADD_RECENT';
 
-export function setSelected(characterId) {
+function setSelected(characterId) {
   return {
     type: SET_SELECTED,
     characterId
@@ -16,6 +17,17 @@ function setTotal(totalCharacters) {
     type: SET_TOTAL,
     totalCharacters
   }
+}
+
+function addRecent(characterId) {
+  return {
+    type: ADD_RECENT,
+    characterId
+  }
+}
+
+export function setSelectedAndRecent(characterId) {
+  return (dispatch) => [dispatch(setSelected(characterId)), dispatch(addRecent(characterId))];
 }
 
 function addCharacters(characters) {
@@ -52,7 +64,7 @@ export function fetchCharacters(offset, deepLink) {
         const heroByDeepLink = getHeroIdByDeepLink(deepLink, getState().characters);
         const selectedHero = deepLink && heroByDeepLink ? heroByDeepLink : data.results[0].id;
 
-        dispatch(setSelected(selectedHero));
+        dispatch(setSelectedAndRecent(selectedHero));
         dispatch(setTotal(data.total));
       }
     });

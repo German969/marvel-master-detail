@@ -8,7 +8,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Tooltip from '@material-ui/core/Tooltip';
 import { ReactComponent as SeriesIcon } from './assets/series.svg';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSelected } from '../stores/store-actions';
+import { setSelectedAndRecent } from '../stores/store-actions';
 
 function HeroRow({ classes, hero }) {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ function HeroRow({ classes, hero }) {
   const isItemSelected = hero.id === selected;
 
   const handleClick = (event, id) => {
-    dispatch(setSelected(id));
+    dispatch(setSelectedAndRecent(id));
   };
 
   const getTableRowProps = () => {

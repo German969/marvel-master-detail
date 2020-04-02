@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import {
   ADD_CHARACTERS,
+  ADD_RECENT,
   SET_SELECTED,
   SET_TOTAL
 } from "./store-actions";
@@ -32,10 +33,21 @@ function characters(state = [], action) {
   }
 }
 
+function recentSearch(state = [], action) {
+  if (action.type === ADD_RECENT) {
+    return state.length === 3 ?
+      [ action.characterId, state[0], state[1] ] :
+      [ action.characterId, ...state ];
+  } else {
+    return state;
+  }
+}
+
 const reducer = combineReducers({
   selected,
   characters,
-  total
+  total,
+  recentSearch
 });
 
 export default reducer;
