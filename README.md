@@ -1,8 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project use data provided by Marvel. © 2014 Marvel.
 
-## Available Scripts
+## Marvel Master Detail
 
-In the project directory, you can run:
+To start the application:
 
 ### `yarn start`
 
