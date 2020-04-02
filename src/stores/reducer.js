@@ -4,7 +4,8 @@ import {
   ADD_RECENT,
   RESET_CHARACTERS,
   SET_SELECTED,
-  SET_TOTAL
+  SET_TOTAL,
+  SET_TEMPORARY_HERO
 } from "./store-actions";
 
 function selected(state = null, action) {
@@ -49,11 +50,20 @@ function recentSearch(state = [], action) {
   }
 }
 
+function temporaryDetails(state = {}, action) {
+  if (action.type === SET_TEMPORARY_HERO) {
+    return action.character;
+  } else {
+    return state;
+  }
+}
+
 const reducer = combineReducers({
   selected,
   characters,
   total,
-  recentSearch
+  recentSearch,
+  temporaryDetails
 });
 
 export default reducer;

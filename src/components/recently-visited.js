@@ -11,7 +11,7 @@ function RecentlyVisited({ classes }) {
   const handleLinkClick = (event, searchInfo) => {
     event.preventDefault();
 
-    return dispatch(setSelectedAndRecent(searchInfo.id, searchInfo.name))
+    return dispatch(setSelectedAndRecent(searchInfo))
   };
 
   const getRecentSearchLinkComponents = (recentSearchInfo) => {

@@ -18,11 +18,16 @@ export default {
   },
 
   searchCharactersByName(query) {
+    let params = {
+      apikey: apiKeys.dev
+    };
+
+    if (query !== '') {
+      params.nameStartsWith = query;
+    }
+
     return axios.get(API_URL + CHARACTERS_PATH, {
-      params: {
-        apikey: apiKeys.dev,
-        nameStartsWith: query
-      }
+      params: params
     })
   },
 

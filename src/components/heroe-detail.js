@@ -8,13 +8,20 @@ import HeroDetailSkeleton from "./hero-detail-skeleton";
 function HeroDetail({classes}) {
   const selected = useSelector(state => state.selected);
   const characters = useSelector(state => state.characters);
+  const recent = useSelector(state => state.recentSearch);
   const [hero, setHero] = useState(null);
 
   useEffect(() => {
-    const heroToShow = characters.find((character) => character.id === selected);
+    let heroToShow = characters.find((character) => character.id === selected);
+
+    if (!heroToShow) {
+      heroToShow = recent.find((recentSearch) => {
+        return recentSearch.id === selected;
+      });
+    }
 
     setHero(heroToShow);
-  }, [selected, characters]);
+  }, [selected, characters, recent]);
 
   const avatarURL = hero ? hero.thumbnail.path + '.' + hero.thumbnail.extension : '';
 

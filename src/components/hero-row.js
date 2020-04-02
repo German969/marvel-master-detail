@@ -15,14 +15,14 @@ function HeroRow({ classes, hero }) {
   const selected = useSelector(state => state.selected);
   const isItemSelected = hero.id === selected;
 
-  const handleClick = (event, id, name) => {
-    dispatch(setSelectedAndRecent(id, name));
+  const handleClick = (event, hero) => {
+    dispatch(setSelectedAndRecent(hero));
   };
 
   const getTableRowProps = () => {
     return {
       hover: true,
-      onClick: (event) => handleClick(event, hero.id, hero.name),
+      onClick: (event) => handleClick(event, hero),
       tabIndex: -1,
       key: hero.name,
       selected: isItemSelected,
