@@ -9,28 +9,28 @@ export const ADD_RECENT = 'ADD_RECENT';
 export const RESET_CHARACTERS = 'RESET_CHARACTERS';
 export const SET_TEMPORARY_HERO = 'SET_TEMPORARY_HERO';
 
-function setSelected(characterId) {
+export function setSelected(characterId) {
   return {
     type: SET_SELECTED,
     characterId
   };
 }
 
-function setTotal(totalCharacters) {
+export function setTotal(totalCharacters) {
   return {
     type: SET_TOTAL,
     totalCharacters
   }
 }
 
-function addRecent(character) {
+export function addRecent(character) {
   return {
     type: ADD_RECENT,
     character
   }
 }
 
-function setTemporaryCharacter(character) {
+export function setTemporaryCharacter(character) {
   return {
     type: SET_TEMPORARY_HERO,
     character
@@ -55,14 +55,14 @@ export function setSelectedAndRecent(hero) {
   };
 }
 
-function addCharacters(characters) {
+export function addCharacters(characters) {
   return {
     type: ADD_CHARACTERS,
     characters
   }
 }
 
-function resetCharacters(characters) {
+export function resetCharacters(characters) {
   return {
     type: RESET_CHARACTERS,
     characters
@@ -90,7 +90,7 @@ export function fetchOneCharacter(name) {
   }
 }
 
-function getHeroByDeepLink(deepLink, characters) {
+export function getHeroByDeepLink(deepLink, characters) {
   const characterInStore = characters.find((character) => {
     const nameLink = toHashPath(character.name);
 
