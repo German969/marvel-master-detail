@@ -1,9 +1,17 @@
 import React from "react";
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 
-function Footer() {
+function Footer({ classes }) {
   return (
-    <h2>Footer</h2>
+    <Typography variant="h6" gutterBottom className={classes.footer}>
+      Data provided by Marvel. © 2014 Marvel
+    </Typography>
   );
 }
 
-export default Footer;
+export default withStyles({
+  footer: {
+    textAlign: 'center'
+  }
+})(Footer);

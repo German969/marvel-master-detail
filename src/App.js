@@ -13,7 +13,9 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchCharacters(0));
+    const heroDeepLink = window.location.href.split('#')[1];
+
+    dispatch(fetchCharacters(0, heroDeepLink));
   }, [dispatch]);
 
   const HeroesContainer = styled(Box)({display: 'flex'});

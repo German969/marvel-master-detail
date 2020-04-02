@@ -25,8 +25,19 @@ function addCharacters(characters) {
   }
 }
 
-export function fetchCharacters(offset) {
-  return function(dispatch) {
+function getHeroIdByDeepLink(deepLink, characters) {
+  const characterInStore = characters.find((character) => {
+    const nameLink = character.name.replace(/\s+/g, '-').toLowerCase();
+    console.log(nameLink, deepLink, nameLink === deepLink);
+
+    return nameLink === deepLink;
+  });
+
+  return characterInStore ? characterInStore.id : null;
+}
+
+export function fetchCharacters(offset, deepLink) {
+  return function(dispatch, getState) {
     return serviceCaller.getCharacters(offset).then(
       (response) => {
         let data = response.data.data;
@@ -38,7 +49,10 @@ export function fetchCharacters(offset) {
       (error) => {console.log('SERVICE FAILED -', error)}
     ).then((data) => {
       if (offset === 0 ) {
-        dispatch(setSelected(data.results[0].id));
+        const heroByDeepLink = getHeroIdByDeepLink(deepLink, getState().characters);
+        const selectedHero = deepLink && heroByDeepLink ? heroByDeepLink : data.results[0].id;
+
+        dispatch(setSelected(selectedHero));
         dispatch(setTotal(data.total));
       }
     });
