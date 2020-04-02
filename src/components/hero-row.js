@@ -7,12 +7,12 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Tooltip from '@material-ui/core/Tooltip';
 import { ReactComponent as SeriesIcon } from './assets/series.svg';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from '../stores/react-redux-hooks';
 import { setSelectedAndRecent } from '../stores/store-actions';
 
-function HeroRow({ classes, hero }) {
+export function HeroRow({ classes, hero }) {
   const dispatch = useDispatch();
-  const selected = useSelector(state => state.selected);
+  const {selected} = useSelector(state => state);
   const isItemSelected = hero.id === selected;
 
   const handleClick = (event, hero) => {
@@ -51,7 +51,7 @@ function HeroRow({ classes, hero }) {
           <SvgIcon component={contentProps.comics.icon} viewBox="0 0 480 480" />
         </Tooltip>
       </TableCell>
-      <TableCell align="right" className={[classes.flagCell, contentProps.series.class]}>
+      <TableCell align="right" className={classes.flagCell + ' ' + contentProps.series.class}>
         <Tooltip title={contentProps.series.label} placement="top" aria-label={contentProps.series.label}>
           <SvgIcon component={SeriesIcon} viewBox="0 0 480 480" />
         </Tooltip>

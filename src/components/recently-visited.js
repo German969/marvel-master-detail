@@ -1,12 +1,12 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from '../stores/react-redux-hooks';
 import Link from "@material-ui/core/Link";
 import { setSelectedAndRecent } from "../stores/store-actions";
 
-function RecentlyVisited({ classes }) {
+export function RecentlyVisited({ classes }) {
   const dispatch = useDispatch();
-  const recentSearches = useSelector(state => state.recentSearch);
+  const {recentSearch: recentSearches} = useSelector(state => state);
 
   const handleLinkClick = (event, searchInfo) => {
     event.preventDefault();
@@ -17,11 +17,12 @@ function RecentlyVisited({ classes }) {
   const getRecentSearchLinkComponents = (recentSearchInfo) => {
     return recentSearchInfo.map((searchInfo, index) => {
       const moraThanOneSeparator = index > 0 ? ', ' : '';
+      const inputName = searchInfo.name + '-link';
 
       return (
-        <span>
+        <span key={index}>
           {moraThanOneSeparator}
-          <Link href={'#'} onClick={(event) => handleLinkClick(event, searchInfo)}>
+          <Link href={'#'} name={inputName} aonClick={(event) => handleLinkClick(event, searchInfo)}>
             {searchInfo.name}
           </Link>
         </span>

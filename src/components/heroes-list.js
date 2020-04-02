@@ -9,19 +9,18 @@ import TableFooter from '@material-ui/core/TableFooter';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TextField from '@material-ui/core/TextField';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from '../stores/react-redux-hooks';
 import  { fetchCharacters, searchCharacters } from '../stores/store-actions';
 import { ReactComponent as SearchIcon } from './assets/search.svg';
 import SvgIcon from "@material-ui/core/SvgIcon";
 
-function HeroesList(props) {
+export function HeroesList(props) {
   const { classes } = props;
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [search, setSearch] = useState('');
-  const rows = useSelector(state => state.characters);
-  const count = useSelector(state => state.total);
+  const {characters: rows, total: count} = useSelector(state => state);
 
   const handleChangePage = (event, newPage) => {
     const loadedCharactersCount = rows.length;
@@ -73,8 +72,22 @@ function HeroesList(props) {
     return new Array(5).fill().map((item, index) => <HeroRowSkeleton key={index} />);
   };
 
+  const getTable = () => {
+    return (
+      <Table>
+        <TableBody>
+          {getRowsToRender()}
+        </TableBody>
+        <TableFooter>
+          <TableRow>
+            <TablePagination {...getTablePaginationProps()} />
+          </TableRow>
+        </TableFooter>
+      </Table>
+    )};
+
   const listContent = ((rowsToShow.length > 0 && rowsPerPage > 0) || rows.length > 0) ?
-    getRowsToRender :
+    getTable :
     getRowSkeletonsToRender;
 
   const getSearchFieldProps = () => {
@@ -84,13 +97,15 @@ function HeroesList(props) {
       type:'search',
       variant: 'outlined',
       size: 'small',
+      name: 'searchQuery',
       className: classes.searchField,
       value: search,
       onChange: (e) => setSearch(e.target.value)
     }
   };
 
-  const handleSearchButtonClick = () => {
+  const handleSearchButtonClick = (event, search) => {
+    console.log(search);
     dispatch(searchCharacters(search));
   };
 
@@ -98,20 +113,11 @@ function HeroesList(props) {
     <div className={classes.heroesList}>
       <div className={classes.searchRow}>
         <TextField {...getSearchFieldProps()} />
-        <Button variant="contained" className={classes.searchButton} onClick={() => {handleSearchButtonClick()}}>
+        <Button variant="contained" className={classes.searchButton} onClick={(event) => handleSearchButtonClick(event, search)}>
           <SvgIcon component={SearchIcon} viewBox="0 0 550 550"/>
         </Button>
       </div>
-      <Table>
-        <TableBody>
-          {listContent()}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination {...getTablePaginationProps()} />
-          </TableRow>
-        </TableFooter>
-      </Table>
+      {listContent()}
     </div>
   );
 }

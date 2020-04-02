@@ -11,13 +11,13 @@ import Typography from '@material-ui/core/Typography';
 import SvgIcon from "@material-ui/core/SvgIcon";
 import { ReactComponent as ExitIcon } from './assets/exit.svg';
 
-function HeroLinks({classes, hero}) {
+export function HeroLinks({classes, hero}) {
   const getHeroURLs = (urls) => {
-    return urls.map((url) => {
+    return urls.map((url, index) => {
       const urlLabel = 'Heroe ' + url.type.charAt(0).toUpperCase() + url.type.slice(1);
 
       return (
-        <ListItem>
+        <ListItem key={index}>
           <ListItemIcon>
             <SvgIcon component={ExitIcon} viewBox="0 0 600 600" />
           </ListItemIcon>

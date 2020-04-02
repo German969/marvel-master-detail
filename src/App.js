@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { styled } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import Footer from "./components/footer";
+import Footer from './components/footer';
 import Header from './components/header';
 import HeroDetail from './components/heroe-detail';
-import HeroesList from "./components/heroes-list";
-import RecentlyVisited from "./components/recently-visited";
-import { useDispatch } from 'react-redux';
+import HeroesList from './components/heroes-list';
+import RecentlyVisited from './components/recently-visited';
+import { useDispatch } from './stores/react-redux-hooks';
 import { fetchCharacters } from './stores/store-actions';
 
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  React.useEffect(() => {
     const heroDeepLink = window.location.href.split('#')[1];
 
     dispatch(fetchCharacters(0, heroDeepLink));

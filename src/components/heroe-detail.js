@@ -1,27 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import HeroLinks from './hero-links';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../stores/react-redux-hooks';
 import HeroDetailSkeleton from "./hero-detail-skeleton";
 
-function HeroDetail({classes}) {
-  const selected = useSelector(state => state.selected);
-  const characters = useSelector(state => state.characters);
-  const recent = useSelector(state => state.recentSearch);
+export function HeroDetail({classes}) {
+  const {selected, characters, recentSearch} = useSelector(state => state);
   const [hero, setHero] = useState(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     let heroToShow = characters.find((character) => character.id === selected);
 
     if (!heroToShow) {
-      heroToShow = recent.find((recentSearch) => {
+      heroToShow = recentSearch.find((recentSearch) => {
         return recentSearch.id === selected;
       });
     }
 
     setHero(heroToShow);
-  }, [selected, characters, recent]);
+  }, [selected, characters, recentSearch]);
 
   const avatarURL = hero ? hero.thumbnail.path + '.' + hero.thumbnail.extension : '';
 

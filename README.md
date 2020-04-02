@@ -39,6 +39,10 @@ Below of the characters list, and the details page, you can find the last three 
 This links will keep available even after triggering a new search with a query string. This functionality was also intended to provide a better user experience by having a way back to what they have been visited.<br />
 The intention of this links is that they serve as a "deep linking" PoC.
 
+### Loading State
+
+Both, the list and the details page, have a skeleton placeholder that shows up when we are fetching data from the API to create a "loading" sensation. After the first time, storage might be always filled up with some data.
+
 ## Deployment Configuration
 
 ### Changing the API key
