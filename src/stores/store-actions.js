@@ -6,6 +6,7 @@ export const ADD_CHARACTERS = 'ADD_CHARACTERS';
 export const SET_TOTAL = 'SET_TOTAL';
 export const SET_SELECTED = 'SET_SELECTED';
 export const ADD_RECENT = 'ADD_RECENT';
+export const RESET_CHARACTERS = 'RESET_CHARACTERS';
 
 function setSelected(characterId) {
   return {
@@ -21,26 +22,39 @@ function setTotal(totalCharacters) {
   }
 }
 
-function addRecent(characterId) {
+function addRecent(character) {
   return {
     type: ADD_RECENT,
-    characterId
+    character
   }
 }
 
 export function setSelectedAndRecent(characterId, name) {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const includeRecent = !getState().recentSearch.find((recent) => recent.id === characterId);
+
     if (name) {
       pushNewHeroPath(name);
     }
 
-    return [dispatch(setSelected(characterId)), dispatch(addRecent(characterId))]
+    if (includeRecent) {
+      return [dispatch(setSelected(characterId)), dispatch(addRecent({id: characterId, name}))]
+    } else {
+      return dispatch(setSelected(characterId))
+    }
   };
 }
 
 function addCharacters(characters) {
   return {
     type: ADD_CHARACTERS,
+    characters
+  }
+}
+
+function resetCharacters(characters) {
+  return {
+    type: RESET_CHARACTERS,
     characters
   }
 }
@@ -77,4 +91,22 @@ export function fetchCharacters(offset, deepLink) {
       }
     });
   };
+}
+
+export function searchCharacters(query) {
+  return function(dispatch) {
+    return serviceCaller.searchCharactersByName(query).then(
+      (response) => {
+        let data = response.data.data;
+
+        dispatch(resetCharacters(data.results));
+
+        return data;
+      },
+      (error) => {console.log('SERVICE FAILED -', error)}
+    ).then((data) => {
+      dispatch(setSelectedAndRecent(data.results[0].id, data.results[0].name));
+      dispatch(setTotal(data.total));
+    });
+  }
 }

@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import {
   ADD_CHARACTERS,
   ADD_RECENT,
+  RESET_CHARACTERS,
   SET_SELECTED,
   SET_TOTAL
 } from "./store-actions";
@@ -23,21 +24,26 @@ function total(state = 0, action) {
 }
 
 function characters(state = [], action) {
-  if (action.type === ADD_CHARACTERS) {
-    return [
-      ...state,
-      ...action.characters
-    ];
-  } else {
-    return state;
+  switch (action.type) {
+    case ADD_CHARACTERS:
+      return [
+        ...state,
+        ...action.characters
+      ];
+    case RESET_CHARACTERS:
+      return [
+        ...action.characters
+      ];
+    default:
+      return state
   }
 }
 
 function recentSearch(state = [], action) {
   if (action.type === ADD_RECENT) {
     return state.length === 3 ?
-      [ action.characterId, state[0], state[1] ] :
-      [ action.characterId, ...state ];
+      [ action.character, state[0], state[1] ] :
+      [ action.character, ...state ];
   } else {
     return state;
   }

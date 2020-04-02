@@ -15,5 +15,23 @@ export default {
         limit
       }
     })
+  },
+
+  searchCharactersByName(query) {
+    return axios.get(API_URL + CHARACTERS_PATH, {
+      params: {
+        apikey: apiKeys.dev,
+        nameStartsWith: query
+      }
+    })
+  },
+
+  getCharacterByName(name) {
+    return axios.get(API_URL + CHARACTERS_PATH, {
+      params: {
+        apikey: apiKeys.dev,
+        name: name
+      }
+    })
   }
 };

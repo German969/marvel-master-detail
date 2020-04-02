@@ -7,15 +7,6 @@ import { setSelectedAndRecent } from "../stores/store-actions";
 function RecentlyVisited({ classes }) {
   const dispatch = useDispatch();
   const recentSearches = useSelector(state => state.recentSearch);
-  const characters = useSelector(state => state.characters);
-
-  const recentSearchLinks = recentSearches.map((characterId) => {
-    const characterInfo = characters.find((character) => {
-      return character.id === characterId;
-    });
-
-    return {name: characterInfo.name, id: characterInfo.id};
-  });
 
   const handleLinkClick = (event, searchInfo) => {
     event.preventDefault();
@@ -40,7 +31,7 @@ function RecentlyVisited({ classes }) {
 
   return (
     <div className={classes.recentlyVisited}>
-      <h2>Recently Visited: {getRecentSearchLinkComponents(recentSearchLinks)}</h2>
+      <h2>Recently Visited: {getRecentSearchLinkComponents(recentSearches)}</h2>
     </div>
   )
 }
