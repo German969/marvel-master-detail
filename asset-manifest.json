@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/marvel-master-detail/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/marvel-master-detail/static/js/main.cc006125.chunk.js",
+    "main.js.map": "/marvel-master-detail/static/js/main.cc006125.chunk.js.map",
+    "runtime-main.js": "/marvel-master-detail/static/js/runtime-main.3d728730.js",
+    "runtime-main.js.map": "/marvel-master-detail/static/js/runtime-main.3d728730.js.map",
+    "static/js/2.8ae1f23c.chunk.js": "/marvel-master-detail/static/js/2.8ae1f23c.chunk.js",
+    "static/js/2.8ae1f23c.chunk.js.map": "/marvel-master-detail/static/js/2.8ae1f23c.chunk.js.map",
+    "index.html": "/marvel-master-detail/index.html",
+    "precache-manifest.1d0ffab192e13b0c4e613a72ddc0d8e6.js": "/marvel-master-detail/precache-manifest.1d0ffab192e13b0c4e613a72ddc0d8e6.js",
+    "service-worker.js": "/marvel-master-detail/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/marvel-master-detail/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.8ae1f23c.chunk.js.LICENSE.txt": "/marvel-master-detail/static/js/2.8ae1f23c.chunk.js.LICENSE.txt",
+    "static/media/comic-disable.eedee6e2.svg": "/marvel-master-detail/static/media/comic-disable.eedee6e2.svg",
+    "static/media/comic.819cef81.svg": "/marvel-master-detail/static/media/comic.819cef81.svg",
+    "static/media/event-disabled.bdf4914d.svg": "/marvel-master-detail/static/media/event-disabled.bdf4914d.svg",
+    "static/media/event.b735a31d.svg": "/marvel-master-detail/static/media/event.b735a31d.svg",
+    "static/media/exit.5f117edd.svg": "/marvel-master-detail/static/media/exit.5f117edd.svg",
+    "static/media/search.a4e6bfc7.svg": "/marvel-master-detail/static/media/search.a4e6bfc7.svg",
+    "static/media/series.65d7de7c.svg": "/marvel-master-detail/static/media/series.65d7de7c.svg",
+    "static/media/story-disabled.1e9a43a9.svg": "/marvel-master-detail/static/media/story-disabled.1e9a43a9.svg",
+    "static/media/story.859eff3c.svg": "/marvel-master-detail/static/media/story.859eff3c.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3d728730.js",
+    "static/js/2.8ae1f23c.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.cc006125.chunk.js"
+  ]
+}
