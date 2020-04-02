@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b8b80be9f2e2ddd31b80020db1f0c542",
+    "revision": "ade7893af7b818a36ff58e69d191c71e",
     "url": "/marvel-master-detail/index.html"
   },
   {
-    "revision": "86d89bdad732b0454aef",
+    "revision": "7e7f546b81120688437a",
     "url": "/marvel-master-detail/static/css/main.5ecd60fb.chunk.css"
   },
   {
-    "revision": "2e2a03e8dbebb3ae8950",
-    "url": "/marvel-master-detail/static/js/2.8ae1f23c.chunk.js"
+    "revision": "41b49cc822dcb44c9f6d",
+    "url": "/marvel-master-detail/static/js/2.31bd5e88.chunk.js"
   },
   {
     "revision": "eac4cf64bf573541fd6dba29c78393a0",
-    "url": "/marvel-master-detail/static/js/2.8ae1f23c.chunk.js.LICENSE.txt"
+    "url": "/marvel-master-detail/static/js/2.31bd5e88.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "86d89bdad732b0454aef",
-    "url": "/marvel-master-detail/static/js/main.cc006125.chunk.js"
+    "revision": "7e7f546b81120688437a",
+    "url": "/marvel-master-detail/static/js/main.9cfbc87b.chunk.js"
   },
   {
     "revision": "9a3afd98856eb9f04f70",
