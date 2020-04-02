@@ -1,4 +1,6 @@
 import serviceCaller from '../service/service-caller';
+import { toHashPath } from "../utils/string-converter";
+import { pushNewHeroPath } from "../utils/browser";
 
 export const ADD_CHARACTERS = 'ADD_CHARACTERS';
 export const SET_TOTAL = 'SET_TOTAL';
@@ -26,8 +28,14 @@ function addRecent(characterId) {
   }
 }
 
-export function setSelectedAndRecent(characterId) {
-  return (dispatch) => [dispatch(setSelected(characterId)), dispatch(addRecent(characterId))];
+export function setSelectedAndRecent(characterId, name) {
+  return (dispatch) => {
+    if (name) {
+      pushNewHeroPath(name);
+    }
+
+    return [dispatch(setSelected(characterId)), dispatch(addRecent(characterId))]
+  };
 }
 
 function addCharacters(characters) {
@@ -39,8 +47,7 @@ function addCharacters(characters) {
 
 function getHeroIdByDeepLink(deepLink, characters) {
   const characterInStore = characters.find((character) => {
-    const nameLink = character.name.replace(/\s+/g, '-').toLowerCase();
-    console.log(nameLink, deepLink, nameLink === deepLink);
+    const nameLink = toHashPath(character.name);
 
     return nameLink === deepLink;
   });
@@ -63,8 +70,9 @@ export function fetchCharacters(offset, deepLink) {
       if (offset === 0 ) {
         const heroByDeepLink = getHeroIdByDeepLink(deepLink, getState().characters);
         const selectedHero = deepLink && heroByDeepLink ? heroByDeepLink : data.results[0].id;
+        const selectedHeroName = deepLink && heroByDeepLink ? null : data.results[0].name;
 
-        dispatch(setSelectedAndRecent(selectedHero));
+        dispatch(setSelectedAndRecent(selectedHero, selectedHeroName));
         dispatch(setTotal(data.total));
       }
     });
